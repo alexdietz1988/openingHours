@@ -81,24 +81,18 @@ const rightNow = document.createElement('p')
 rightNow.innerHTML = `Right now it's ${weekdayInEnglish(currentWeekday)} at ${timeInEnglish(currentHour)}.`
 document.body.appendChild(rightNow)
 
-let openSec = document.querySelector("#open")
+for (let i = 0; i < workplaces.length; i++) {
+    if (isItOpen(workplaces[i]) === true) {
+        let message = document.createElement('p');
+        message.innerHTML = getMessage(workplaces[i]);
+        document.body.appendChild(message)
+    }
+}
 
-function messageForOpen() {
-    for (let i = 0; i < workplaces.length; i++) {
-        if (isItOpen(workplaces[i]) === true) {
-            message = document.createElement('p');
-            message.innerHTML = getMessage(workplaces[i]);
-            console.log(message)
-
-            document.openSec.appendChild(message);
+for (let i = 0; i < workplaces.length; i++) {
+    if (isItOpen(workplaces[i]) === false) {
+        let message = document.createElement('p');
+        message.innerHTML = getMessage(workplaces[i]);
+        document.body.appendChild(message)
         }
-    }
 }
-
-function messageForClosed() {
-    for (let i = 0; i < workplaces.length; i++) {
-        if (isItOpen(workplaces[i] === false)) appendMessage(workplaces[i])
-    }
-}
-
-messageForOpen()
